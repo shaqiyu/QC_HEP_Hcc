@@ -66,7 +66,7 @@ def Trandform(sigArray, bkgArray, rangConst="_0_1"):
 
     return sigConstrain, bkgConstrain
 
-def preparingData(confiFile="config_qqyy_8.json", prossEvent=100, fraction=0.5, seed=None, dataType="Classical"):
+def preparingData(confiFile="config_qqyy_8.json", prossEvent=100, fraction=1, seed=None, dataType="Classical"):
 
     config = readConfig(confiFile)
 

@@ -74,7 +74,8 @@ except ImportError:
     )
     sys.exit()
 
-rng = np.random.RandomState(0)
+rng = 45
+#rng = np.random.RandomState(0)
 
 def LoadOptions():
     parser = OptionParser()
@@ -106,7 +107,7 @@ def classification(opt):
     
     # use -1 for all the events
     nEvent = opt['events']
-    sEvents = 0.5
+    sEvents = 1
     cnumb = opt['cnumb']
     gamma_numb = opt['gamma']
     
