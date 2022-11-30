@@ -1,0 +1,609 @@
+Line #    Mem usage    Increment  Occurrences   Line Contents
+=============================================================
+    18  650.820 MiB 1697.039 MiB           3   @profile
+    19                                         def readConfig(configFile="config_qqyy_8.json"):
+    20                                         
+    21  650.941 MiB    0.121 MiB           3       with open("config/" + configFile, "r") as f_obj:
+    22  650.941 MiB    0.000 MiB           3           config = json.load(f_obj)
+    23                                                 # print(config)
+    24  650.941 MiB    0.000 MiB           3           logging.info("Signal sample(s) %s", config["signal_file_list"])
+    25  650.941 MiB    0.000 MiB           3           logging.info("Background sample(s) %s", config["bkg_file_list"])
+    26  650.941 MiB    0.000 MiB           3           logging.info("Signal(s) tree name %s", config["signal_tree_name"])
+    27  650.941 MiB    0.000 MiB           3           logging.info("Background(s) tree name %s", config["bkg_tree_name"])
+    28  650.941 MiB    0.000 MiB           3           logging.info("Signal(s) weight variable %s", config["signal_weight_name"])
+    29  650.941 MiB    0.000 MiB           3           logging.info("Background(s) weight variable %s", config["bkg_weight_name"])
+    30  650.941 MiB    0.000 MiB           3           logging.info("Signal(s) variables %s", config["var_signal"])
+    31  650.941 MiB    0.000 MiB           3           logging.info("Background(s) variables %s", config["var_bkg"])
+    32                                         
+    33  650.941 MiB    0.000 MiB           3       return config
+    34                                         
+    35                                         
+    36                                         #def Trandform(dataArray, rangConst="_0_1"):
+    37                                         #    dataConstrain = []
+    38                                         
+    39                                             # mini = np.quantile(dataArray, q=0.05, axis=0)
+    40                                             # maxi = np.quantile(dataArray, q=0.95, axis=0)
+    41                                         
+    42                                         #    if rangConst == "_0_1":  # [0, 1]
+    43                                         #        dataConstrain = (dataArray - np.min(dataArray, axis=0)) / np.ptp(
+    44                                         #            dataArray, axis=0
+    45                                         #        )
+    46                                         #    elif rangConst == "_n1_1":  # [-1,1]
+    47                                                 
+    48                                         #        mini = 0.0 #[min(idx) for idx in zip(*dataArray)]
+    49                                         #        maxi = 200.0 #[max(idx) for idx in zip(*dataArray)]
+    50                                         
+    51                                                 #nominator   =  np.subtract(dataArray,dataMin) #[a - b for a, b in zip(data, dataMin)] #data - dataMin[:,None]
+    52                                                 #denomenator =  np.subtract(dataMax,dataMin)
+    53                                                 #ratio = 2*np.divide(nominator, denomenator) - 1
+    54                                         
+    55                                                 #dataConstrain = ratio
+    56                                                 
+    57                                                 #dataConstrain = 2.*(dataArray - np.min(dataArray))/np.ptp(dataArray)-1 #T1
+    58                                                 #dataConstrain = ( 2.0 * (dataArray - np.min(dataArray, axis=0)) / np.ptp(dataArray, axis=0)) - 1  # T2
+    59                                                 #dataConstrain = ( 2.0 * (dataArray - np.min(dataArray, axis=0)) / np.ptp(dataArray, axis=0)) - 1  # T2
+    60                                                 #dataConstrain = ( 2.*( dataArray - mini)/(maxi - mini) ) - 1
+    61                                                 # dataConstrain = 2.*(np.clip(dataArray, a_min=np.min(dataArray,axis=0), a_max=np.max(dataArray,axis=0)) - np.min(dataArray,axis=0))/(np.max(dataArray,axis=0) - np.min(dataArray,axis=0))-1 #T3
+    62                                         
+    63                                                 #print("list:\n",dataArray)
+    64                                                 #print("dat-min\n:", nomin)
+    65                                                 #print("max-min\n:", demon)
+    66                                                 #print("ratio:\n", dataConstrain)
+    67                                         
+    68                                                 #print("list:\n",dataArray)
+    69                                                 #print("list after:\n",dataConstrain)
+    70                                                 #print("mim:\n", np.min(dataArray, axis=0))
+    71                                                 #print("max:\n", np.max(dataArray, axis=0))
+    72                                                 #print("max-min\n:", np.max(dataArray, axis=1) - np.min(dataArray, axis=1))
+    73                                                 #print("ptp(max-min)\n:", np.ptp(dataArray, axis=0))
+
+
+Filename: /home/sqy/analysis/Quantum/QHEP/Qhep_Modules_new/Utilities.py
+
+Line #    Mem usage    Increment  Occurrences   Line Contents
+=============================================================
+    74  650.945 MiB 2364.766 MiB           4   @profile
+    75                                         def Trandform(dataArray, dataArray2, rangConst="_0_1"):
+    76  650.945 MiB    0.000 MiB           4       dataConstrain = []
+    77                                         
+    78  650.945 MiB    0.000 MiB           4       if rangConst == "_0_1":  # [0, 1]
+    79                                                 dataConstrain = (dataArray - np.min(dataArray, axis=0)) / np.ptp(
+    80                                                     dataArray, axis=0
+    81                                                 )
+    82  650.945 MiB    0.000 MiB           4       elif rangConst == "_n1_1":  # [-1,1]
+    83  650.945 MiB    0.000 MiB           4            mini1 = np.min(dataArray, axis=0)
+    84  650.945 MiB    0.000 MiB           4            mini2 = np.min(dataArray2, axis=0)
+    85  650.945 MiB    0.000 MiB           4            maxi1 = np.max(dataArray, axis=0)
+    86  650.945 MiB    0.000 MiB           4            maxi2 = np.max(dataArray2, axis=0)
+    87  650.945 MiB    0.000 MiB           4            mini = np.minimum(mini1, mini2)
+    88  650.945 MiB    0.000 MiB           4            maxi = np.maximum(maxi1, maxi2)
+    89  650.945 MiB    0.000 MiB           4            dataConstrain = (2.*(dataArray - mini)/(maxi-mini))-1 #T1
+    90                                                 #dataConstrain = (
+    91                                                     #2.0 * (dataArray - 0)/ 100) - 1  # T2
+    92                                                 # dataConstrain = ( 2.*(np.clip(dataArray, a_min=mini, a_max=maxi) - mini)/(maxi - mini) ) - 1
+    93                                                 # dataConstrain = 2.*(np.clip(dataArray, a_min=np.min(dataArray,axis=0), a_max=np.max(dataArray,axis=0)) - np.min(dataArray,axis=0))/(np.max(dataArray,axis=0) - np.min(dataArray,axis=0))-1 #T
+    94                                         
+    95  650.945 MiB    0.000 MiB           4            print("min:\n", mini)
+    96  650.945 MiB    0.000 MiB           4            print("max:\n", maxi)
+    97  650.945 MiB    0.000 MiB           4            print("min1:\n", mini1)
+    98  650.945 MiB    0.000 MiB           4            print("max1:\n", maxi1)
+    99  650.945 MiB    0.000 MiB           4            print("min2:\n", mini2)
+   100  650.945 MiB    0.000 MiB           4            print("max2:\n", maxi2)
+   101                                         
+   102                                             elif rangConst == "_0_2pi":  # [0, 2pi]
+   103                                                 dataConstrain = (
+   104                                                     2
+   105                                                     * np.pi
+   106                                                     * (dataArray - np.min(dataArray, axis=0))
+   107                                                     / np.ptp(dataArray, axis=0)
+   108                                                 )
+   109                                             elif rangConst == "_npi_pi":  # [-pi, pi]
+   110                                                 dataConstrain = -np.pi + np.pi * (
+   111                                                     dataArray - np.min(dataArray, axis=0)
+   112                                                 ) / np.ptp(dataArray, axis=0)
+   113                                         
+   114  650.945 MiB    0.000 MiB           4       return dataConstrain
+
+
+Filename: /home/sqy/analysis/Quantum/QHEP/Qhep_Modules_new/Utilities.py
+
+Line #    Mem usage    Increment  Occurrences   Line Contents
+=============================================================
+   116  650.820 MiB 1174.266 MiB           2   @profile
+   117                                         def preparingData(
+   118                                             confiFile="config_qqyy_8.json", prossEvent=10, removeNegativeWeight=True, fraction=0.5, seed=None, dataType="Classical"
+   119                                         ):
+   120                                         
+   121  650.941 MiB 1174.387 MiB           2       config = readConfig(confiFile)
+   122                                             #root2array(filenames, treename=None, branches=None, selection=None, object_selection=None, start=None, stop=None, step=None, include_weight=False, weight_name='weight', cache_size=-1, warn_missing_tree=False)
+   123  650.945 MiB    7.484 MiB           4       signal_dataset = root2array(
+   124  650.941 MiB    0.000 MiB           2           filenames=config["signal_file_list"],
+   125  650.941 MiB    0.000 MiB           2           treename=config["signal_tree_name"],
+   126  650.941 MiB    0.000 MiB           2           branches=config["var_signal"],
+   127  650.941 MiB    0.000 MiB           2           selection=config["signal_selection"],
+   128  650.941 MiB    0.000 MiB           2           include_weight=False,
+   129  650.941 MiB    0.000 MiB           2           weight_name="weight",
+   130  650.941 MiB    0.000 MiB           2           stop=prossEvent,
+   131                                             )
+   132                                             #signal_dataset = signal_dataset.astype(np.float32)
+   133                                         
+   134  650.945 MiB    0.000 MiB           4       signal_weights = root2array(
+   135  650.945 MiB    0.000 MiB           2           filenames=config["signal_file_list"],
+   136  650.945 MiB    0.000 MiB           2           treename=config["signal_tree_name"],
+   137  650.945 MiB    0.000 MiB           2           branches=config["signal_weight_name"],
+   138  650.945 MiB    0.000 MiB           2           include_weight=False,
+   139  650.945 MiB    0.000 MiB           2           stop=prossEvent,
+   140                                             )
+   141                                         
+   142  650.945 MiB    0.512 MiB           4       bkg_dataset = root2array(
+   143  650.945 MiB    0.000 MiB           2           filenames=config["bkg_file_list"],
+   144  650.945 MiB    0.000 MiB           2           treename=config["bkg_tree_name"],
+   145  650.945 MiB    0.000 MiB           2           branches=config["var_bkg"],
+   146  650.945 MiB    0.000 MiB           2           selection=config["bkg_selection"],
+   147  650.945 MiB    0.000 MiB           2           include_weight=False,
+   148  650.945 MiB    0.000 MiB           2           weight_name="weight",
+   149  650.945 MiB    0.000 MiB           2           stop=prossEvent,
+   150                                             )
+   151                                         
+   152  650.945 MiB    0.000 MiB           4       bkg_weights = root2array(
+   153  650.945 MiB    0.000 MiB           2           filenames=config["bkg_file_list"],
+   154  650.945 MiB    0.000 MiB           2           treename=config["bkg_tree_name"],
+   155  650.945 MiB    0.000 MiB           2           branches=config["bkg_weight_name"],
+   156  650.945 MiB    0.000 MiB           2           include_weight=False,
+   157  650.945 MiB    0.000 MiB           2           stop=prossEvent,
+   158                                             )
+   159                                          
+   160                                         
+   161                                             #balance the weight. It's not important for now since we don't use the weight
+   162                                             #signal_weights = signal_weights*(bkg_weights/signal_weights)
+   163  650.945 MiB    0.000 MiB           2       signal_dataset1 = rec2array(signal_dataset)
+   164  650.945 MiB    0.000 MiB           2       bkg_dataset1 = rec2array(bkg_dataset)
+   165  650.945 MiB    0.000 MiB           2       signal_dataset = rec2array(signal_dataset)
+   166  650.945 MiB    0.000 MiB           2       bkg_dataset = rec2array(bkg_dataset)
+   167                                         
+   168                                             #print("check weight",signal_weights[0], bkg_weights[0])
+   169                                         
+   170                                             # Transformation applies for both Classical and Quantum
+   171                                             #signal_dataset = Trandform(signal_dataset, "_n1_1")
+   172                                             #bkg_dataset = Trandform(bkg_dataset, "_n1_1")
+   173  650.945 MiB 1182.383 MiB           2       signal_dataset = Trandform(signal_dataset, bkg_dataset1, "_n1_1")
+   174  650.945 MiB 1182.383 MiB           2       bkg_dataset = Trandform(bkg_dataset, signal_dataset1, "_n1_1")
+   175                                         
+   176  650.945 MiB    0.000 MiB           2       print("number of signal:",len(signal_dataset),"number of background:",len(bkg_dataset))
+   177                                             # remove negative weights and then normalise each events by the it's weight
+   178                                             # signal weight
+   179  650.945 MiB    0.000 MiB           2       if removeNegativeWeight == True:
+   180                                                 for i in range(len(signal_weights)):
+   181                                                     if signal_weights[i] < 0:
+   182                                                         signal_weights[i] = signal_weights[i] * -1
+   183                                         
+   184                                                 for i in range(len(bkg_weights)):
+   185                                                     if bkg_weights[i] < 0:
+   186                                                         bkg_weights[i] = bkg_weights[i] * -1
+   187                                         
+   188  650.945 MiB    0.000 MiB           2       train_size = int(len(signal_dataset) * fraction)
+   189  650.945 MiB    0.000 MiB           2       test_size = int(len(signal_dataset) * fraction)
+   190                                         
+   191  650.945 MiB    0.000 MiB           2       logging.info("Total number of signal : %s", str(len(signal_dataset)))
+   192  650.945 MiB    0.000 MiB           2       logging.info("Total number of backgrouns : %s", str(len(bkg_dataset)))
+   193  650.945 MiB    0.000 MiB           2       logging.info("Train size : %s", str(train_size))
+   194  650.945 MiB    0.000 MiB           2       logging.info("Testing size : %s", str(test_size))
+   195                                         
+   196  650.945 MiB    0.000 MiB           2       X_signal = signal_dataset
+   197  650.945 MiB    0.000 MiB           2       X_signal_weights = signal_weights
+   198  650.945 MiB    0.000 MiB           2       X_background = bkg_dataset
+   199  650.945 MiB    0.000 MiB           2       X_bkg_weights = bkg_weights
+   200                                         
+   201  650.945 MiB    0.000 MiB           2       y_signal = np.ones(X_signal.shape[0])
+   202  650.945 MiB    0.000 MiB           2       y_background = np.ones(X_background.shape[0])
+   203  650.945 MiB    0.000 MiB           2       y_background = -1 * y_background
+   204                                         
+   205  650.945 MiB    0.000 MiB           2       X = np.concatenate([X_signal, X_background], axis=0)
+   206  650.945 MiB    0.000 MiB           2       y = np.concatenate([y_signal, y_background])
+   207  650.945 MiB    0.000 MiB           2       XW = np.concatenate([X_signal_weights, X_bkg_weights], axis=0)
+   208                                         
+   209  650.945 MiB    0.000 MiB           4       X_train, X_test, y_train, y_test = train_test_split(
+   210  650.945 MiB    0.000 MiB           2           X, y, train_size=train_size, test_size=test_size, random_state=seed
+   211                                             )
+   212  650.945 MiB    0.000 MiB           2       XW_train, XW_test = train_test_split(XW, train_size=train_size, test_size=test_size)
+   213                                             #else:
+   214                                             #   X_train, X_test, y_train, y_test = train_test_split(X, y, train_size=train_size, test_size=test_size, shuffle=False) #random_state=None)
+   215                                             #   XW_train, XW_test = train_test_split(XW, train_size=train_size, test_size=test_size, random_state=None)
+   216                                         
+   217                                             # TODO: Use standarised only in the classical case
+   218  650.945 MiB    0.000 MiB           2       if dataType=="Classical":
+   219  650.945 MiB    0.000 MiB           2          print("The data will be prepared for the classical case so transformation is needed.")
+   220  650.945 MiB    0.000 MiB           2          scaler = StandardScaler()
+   221  650.945 MiB    0.000 MiB           2          X_train = scaler.fit_transform(X_train)
+   222  650.945 MiB    0.000 MiB           2          X_test = scaler.transform(X_test)
+   223                                             else:
+   224                                                # Do nothing here
+   225                                                print("The data will be prepared for the quantum case so no transformation is needed.")
+   226                                              
+   227                                         
+   228  650.945 MiB    0.000 MiB           2       labels = {1: "S", -1: "B"}
+   229                                         
+   230  650.945 MiB    0.000 MiB           2       train_dataset = {
+   231  650.945 MiB    0.000 MiB           2           labels[1]: X_train[y_train == 1],
+   232  650.945 MiB    0.000 MiB           2           labels[-1]: X_train[y_train == 1],
+   233                                             }
+   234  650.945 MiB    0.000 MiB           2       test_dataset = {labels[1]: X_test[y_test == 1], labels[-1]: X_test[y_test == -1]}
+   235                                         
+   236                                             # print(signal_dataset)
+   237                                             # return signal_dataset,signal_weights,bkg_dataset,bkg_weights
+   238  650.945 MiB    0.000 MiB           2       return (
+   239  650.945 MiB    0.000 MiB           2           X_train,
+   240  650.945 MiB    0.000 MiB           2           X_test,
+   241  650.945 MiB    0.000 MiB           2           y_train,
+   242  650.945 MiB    0.000 MiB           2           y_test,
+   243  650.945 MiB    0.000 MiB           2           XW_train,
+   244  650.945 MiB    0.000 MiB           2           XW_test,
+   245  650.945 MiB    0.000 MiB           2           train_dataset,
+   246  650.945 MiB    0.000 MiB           2           test_dataset,
+   247  650.945 MiB    0.000 MiB           2           signal_dataset,
+   248  650.945 MiB    0.000 MiB           2           bkg_dataset,
+   249  650.945 MiB    0.000 MiB           2           signal_weights,
+   250  650.945 MiB    0.000 MiB           2           bkg_weights,
+   251  650.945 MiB    0.000 MiB           2           X,
+   252  650.945 MiB    0.000 MiB           2           y,
+   253                                             )
+
+
+Filename: bin/classification.py
+
+Line #    Mem usage    Increment  Occurrences   Line Contents
+=============================================================
+    73  522.773 MiB  522.773 MiB           1   @profile
+    74                                         def LoadOptions():
+    75  522.773 MiB    0.000 MiB           1       parser = OptionParser()
+    76                                         
+    77  522.773 MiB    0.000 MiB           1       parser.add_option("-e","--Entangle",dest="entanglment", default="Full",type=str, help='Use from: fullforward, fullbackward')
+    78  522.773 MiB    0.000 MiB           1       parser.add_option("-n","--Events",dest="events_number", default=100 ,type=int, help='Enter the number of events you want to use, 100, 200, 400, ...')
+    79  522.773 MiB    0.000 MiB           1       parser.add_option("-d","--Depth",dest="depth_number", default=1 ,type=int, help='Enter the number of circuit repetition you want to use, 1, 2, 3, ...')
+    80  522.773 MiB    0.000 MiB           1       parser.add_option("-b","--backend",dest="backend", default="ibmq" ,type=str, help='Use ibm quantum computor')
+    81                                         
+    82  522.773 MiB    0.000 MiB           1       (options, args) = parser.parse_args()
+    83                                         
+    84                                         
+    85  522.773 MiB    0.000 MiB           2       return { 'entangle' :   options.entanglment,
+    86  522.773 MiB    0.000 MiB           1                'events' :   options.events_number,
+    87  522.773 MiB    0.000 MiB           1                'depth' :   options.depth_number,
+    88  522.773 MiB    0.000 MiB           1                'backend' : options.backend
+    89                                                      #'inverse' :   options.inverse_circuit
+    90                                                    }
+
+
+Filename: bin/classification.py
+
+Line #    Mem usage    Increment  Occurrences   Line Contents
+=============================================================
+    92  522.773 MiB  522.773 MiB           1   @profile
+    93                                         def classification(opt):
+    94                                         
+    95  522.773 MiB    0.000 MiB           1       varSetting = "config_qqyy_6.json"
+    96                                         
+    97  522.773 MiB  522.773 MiB           1       config = Utilities.readConfig("config_qqyy_6.json")
+    98                                             
+    99                                             
+   100                                             # use -1 for all the events
+   101  522.773 MiB    0.000 MiB           1       nEvent = opt['events']
+   102  522.773 MiB    0.000 MiB           1       sEvents = 0.5
+   103  522.773 MiB    0.000 MiB           1       algorithm1 = "QSVM"
+   104  522.773 MiB    0.000 MiB           1       algorithm2 = "SVM"
+   105                                             
+   106  522.773 MiB    0.000 MiB           1       algorithm = ["QSVM", "SVM"]
+   107                                             
+   108  522.773 MiB    0.000 MiB          11       (fpr_SVM, tpr_SVM, fpr_QSVM, tpr_QSVM) = ([] for i in range(4))
+   109                                         
+   110  523.445 MiB    0.672 MiB           1       mean_fpr = np.linspace(0, 1, 100000)
+   111  523.445 MiB    0.000 MiB           1       cv = StratifiedKFold(n_splits=3)
+   112                                         
+   113  523.445 MiB    0.000 MiB           1       tprsq = []
+   114  523.445 MiB    0.000 MiB           1       tprsq_ibm = []
+   115                                         
+   116  523.445 MiB    0.000 MiB           1       tprs  = []
+   117                                         
+   118  523.445 MiB    0.000 MiB           1       aucs  = []
+   119  523.445 MiB    0.000 MiB           1       aucsq = []
+   120  523.445 MiB    0.000 MiB           1       aucsq_ibm = []
+   121                                         
+   122  523.445 MiB    0.000 MiB           1       aruc_SVMs = []
+   123  523.445 MiB    0.000 MiB           1       aruc_QSVMs= []
+   124  523.445 MiB    0.000 MiB           1       aruc_QSVMs_ibm= []
+   125                                         
+   126  523.445 MiB    0.000 MiB           1       std_auc = 0
+   127  523.445 MiB    0.000 MiB           1       std_qauc_ibm = 0
+   128  523.445 MiB    0.000 MiB           1       std_qauc = 0
+   129                                         
+   130  523.445 MiB    0.000 MiB           1       aruc_SVM = None
+   131  523.445 MiB    0.000 MiB           1       aruc_QSVM = None
+   132  523.445 MiB    0.000 MiB           1       aruc_QSVM_ibm = None
+   133                                         
+   134                                         
+   135                                          
+   136                                             # Create empty lists
+   137  523.445 MiB    0.000 MiB           1       (
+   138  523.445 MiB    0.000 MiB           1           X_train,
+   139  523.445 MiB    0.000 MiB           1           X_test,
+   140  523.445 MiB    0.000 MiB           1           y_train,
+   141  523.445 MiB    0.000 MiB           1           y_test,
+   142  523.445 MiB    0.000 MiB           1           XW_train,
+   143  523.445 MiB    0.000 MiB           1           XW_test,
+   144  523.445 MiB    0.000 MiB           1           signal_dataset,
+   145  523.445 MiB    0.000 MiB           1           bkg_dataset,
+   146  523.445 MiB    0.000 MiB           1           signal_weights,
+   147  523.445 MiB    0.000 MiB           1           bkg_weights,
+   148  523.445 MiB    0.000 MiB           1           X,
+   149  523.445 MiB    0.000 MiB           1           y,
+   150  523.445 MiB    0.000 MiB          27       ) = ([] for i in range(12))
+   151                                             
+   152  523.445 MiB    0.000 MiB           1       train_dataset = {}
+   153  523.445 MiB    0.000 MiB           1       test_dataset = {}
+   154                                         
+   155  523.445 MiB    0.000 MiB           1       n = 100
+   156  523.445 MiB    0.000 MiB           1       mse_list = []
+   157  523.445 MiB    0.000 MiB           1       seed_list = np.arange(0, n)
+   158                                         
+   159  523.445 MiB    0.000 MiB           1       C_range = [0.1, 1, 10, 100, 1000, 100000]
+   160  523.445 MiB    0.000 MiB           1       gamma_range = [1, 0.1, 0.01, 0.001, 0.0001, 0.00001]
+   161                                             
+   162  650.988 MiB    0.000 MiB           3       for algo in algorithm:
+   163  650.820 MiB    0.000 MiB           2           if algo=="QSVM":
+   164                                                 
+   165  531.438 MiB    0.000 MiB           1              (
+   166  531.438 MiB    0.000 MiB           1                  X_train,
+   167  531.438 MiB    0.000 MiB           1                  X_test,
+   168  531.438 MiB    0.000 MiB           1                  y_train,
+   169  531.438 MiB    0.000 MiB           1                  y_test,
+   170  531.438 MiB    0.000 MiB           1                  XW_train,
+   171  531.438 MiB    0.000 MiB           1                  XW_test,
+   172  531.438 MiB    0.000 MiB           1                  train_dataset,
+   173  531.438 MiB    0.000 MiB           1                  test_dataset,
+   174  531.438 MiB    0.000 MiB           1                  signal_dataset,
+   175  531.438 MiB    0.000 MiB           1                  bkg_dataset,
+   176  531.438 MiB    0.000 MiB           1                  signal_weights,
+   177  531.438 MiB    0.000 MiB           1                  bkg_weights,
+   178  531.438 MiB    0.000 MiB           1                  X,
+   179  531.438 MiB    0.000 MiB           1                  y,
+   180  531.438 MiB  531.438 MiB           1              ) = Utilities.preparingData(varSetting, prossEvent=nEvent, removeNegativeWeight=False, fraction=sEvents, seed=rng, dataType="Classical")
+   181                                                    
+   182                                                    
+   183  531.438 MiB    0.000 MiB           1              print("signal_dataset:")
+   184  531.438 MiB    0.000 MiB           1              print(signal_dataset)
+   185  531.438 MiB    0.000 MiB           1              print("bkg_dataset:")
+   186  531.438 MiB    0.000 MiB           1              print(bkg_dataset)
+   187  544.477 MiB   13.039 MiB           1              Plotter.plotVars(config, signal_dataset, bkg_dataset, signal_weights, bkg_weights, "")
+   188  544.477 MiB    0.000 MiB           1              logging.info("The data processed for quantum use in %s", timer() - data_Pro_time)
+   189                                                    
+   190  544.477 MiB    0.000 MiB           1              time_in_qsvm = timer()
+   191  544.477 MiB    0.000 MiB           1              seed = 12345
+   192                                                    
+   193  544.477 MiB    0.000 MiB           1              feature_dim = X.shape[1]
+   194                                                    
+   195  544.477 MiB    0.000 MiB           2              print(
+   196  544.477 MiB    0.000 MiB           1                  "Number of qubits used is",
+   197  544.477 MiB    0.000 MiB           1                  feature_dim,
+   198  544.477 MiB    0.000 MiB           1                  "it should be the number of the variables used in the trainning.",
+   199                                                    )
+   200                                                   
+   201  544.477 MiB    0.000 MiB           1              Gentangle = opt['entangle']
+   202  544.477 MiB    0.000 MiB           1              depth = opt['depth']
+   203  544.477 MiB    0.000 MiB           1              inverse = False #opt['inverse']
+   204                                         
+   205                                                    #==============
+   206                                                    # Wheather to use real quantum computer or not
+   207                                                    #================
+   208  544.477 MiB    0.000 MiB           1              backend = None
+   209  544.477 MiB    0.000 MiB           1              feature_map_cus = None
+   210  544.477 MiB    0.000 MiB           1              qkernel = None
+   211                                         
+   212  544.477 MiB    0.000 MiB           1              if "both" in opt['backend']:
+   213                                                      warnings.filterwarnings('ignore')
+   214                                                      IBMQ.save_account("75685791c48132479d6c609db91a6f636051da392dba2f4dde1190c8b1f222aead93df9c00bb30fb1df78a7789d59b52844fefba66d0d3681683dcad95080e3f", overwrite=True)
+   215                                                      provider = IBMQ.load_account()
+   216                                         
+   217                                                      provider = IBMQ.get_provider(hub='ibm-q', group='open', project='main')
+   218                                         
+   219                                                      feature_map_cus = customised_feature_maps.FeatureMap(
+   220                                                          num_qubits=feature_dim, depth=depth, degree=1, entanglement=Gentangle, inverse=False
+   221                                                      )
+   222                                         
+   223                                                      print("Custom feature map:\n", feature_map_cus)
+   224                                         
+   225                                                      backend_ibm = provider.get_backend('ibmq_santiago') #ibmq_lima
+   226                                         
+   227                                                      mapped_circuit = transpile(feature_map_cus, backend=backend_ibm)
+   228                                                      quantum_instance_ibm = QuantumInstance(backend_ibm, shots=1024) 
+   229                                                      qkernel_ibm = QuantumKernel(feature_map=mapped_circuit, quantum_instance=quantum_instance_ibm) 
+   230                                         
+   231                                                      backend = BasicAer.get_backend("statevector_simulator")  # fast
+   232                                         
+   233                                                      quantum_instance = QuantumInstance(
+   234                                                          backend, shots=1024, seed_simulator=seed, seed_transpiler=seed
+   235                                                      )
+   236                                                      qkernel = QuantumKernel(feature_map=feature_map_cus, quantum_instance=quantum_instance)
+   237                                         
+   238                                                      qsvc = QSVC(quantum_kernel=qkernel, probability=True, C=30)
+   239                                                      qsvc_ibm = QSVC(quantum_kernel=qkernel_ibm, probability=True, C=30)
+   240                                         
+   241                                                      for i, (train, test) in enumerate(cv.split(X, y)):
+   242                                                          clfq_ibm = qsvc_ibm.fit(X[train], y[train])
+   243                                                          clfq     = qsvc.fit(X[train], y[train])
+   244                                                          scores_ibm = clfq_ibm.decision_function(X[test])
+   245                                                          scores     = clfq.decision_function(X[test])
+   246                                         
+   247                                                          fpr_ibm, tpr_ibm, threshold_ = sklearn.metrics.roc_curve(y[test], scores_ibm)
+   248                                                          fpr, tpr, threshold = sklearn.metrics.roc_curve(y[test], scores)
+   249                                         
+   250                                                          roc_auc_ibm = sklearn.metrics.auc(fpr_ibm, tpr_ibm)
+   251                                                          roc_auc = sklearn.metrics.auc(fpr, tpr)
+   252                                         
+   253                                         
+   254                                                          print("ibm ROC fold %d (AUC = %0.3f)" %(i+1, roc_auc_ibm))
+   255                                                          print("ROC fold %d (AUC = %0.3f)" %(i+1, roc_auc))
+   256                                         
+   257                                         
+   258                                                          interp_tpr = np.interp(mean_fpr, fpr, tpr)
+   259                                         
+   260                                                          interp_tpr[0] = 0.0
+   261                                                          tprsq_ibm.append(interp_tpr)
+   262                                                          aruc_QSVMs_ibm.append(roc_auc_ibm)
+   263                                                          tprsq_ibm.append(interp_tpr)
+   264                                                          aruc_QSVMs_ibm.append(roc_auc)
+   265                                         
+   266                                         
+   267                                                      tpr_QSVM_ibm = np.mean(tprsq_ibm, axis=0)
+   268                                                      fpr_QSVM_ibm = mean_fpr_ibm
+   269                                                      tpr_QSVM = np.mean(tprsq, axis=0)
+   270                                                      fpr_QSVM = mean_fpr
+   271                                         
+   272                                         
+   273                                                      mean_qauc_ibm = sklearn.metrics.auc(fpr_QSVM_ibm, tpr_QSVM_ibm)
+   274                                                      mean_qauc = sklearn.metrics.auc(fpr_QSVM, tpr_QSVM)
+   275                                         
+   276                                                      aruc_QSVM_ibm = np.mean(aruc_QSVMs_ibm)
+   277                                                      std_qauc_ibm = np.std(aruc_QSVMs_imb)
+   278                                         
+   279                                                      aruc_QSVM = np.mean(aruc_QSVMs)
+   280                                                      std_qauc = np.std(aruc_QSVMs)
+   281                                         
+   282                                         
+   283                                                      print("QSVM AUC IBM:", aruc_QSVM_ibm)
+   284                                                      print("QSVM AUC Mean IBM: %s" % mean_qauc_ibm)
+   285                                                      print("Standard deviation for quantum IBM: %s" % np.std(aruc_QSVMs_ibm))
+   286                                         
+   287                                                      print("QSVM AUC:", aruc_QSVM)
+   288                                                      print("QSVM AUC Mean: %s" % mean_qauc)
+   289                                                      print("Standard deviation for quantum: %s" % np.std(aruc_QSVMs))
+   290                                         
+   291                                         
+   292  544.477 MiB    0.000 MiB           1              elif 'sim' in opt['backend']:
+   293                                                      #backend = BasicAer.get_backend('qasm_simulator')       # Very slow
+   294  544.477 MiB    0.000 MiB           1                backend = BasicAer.get_backend("statevector_simulator")  # fast
+   295                                         
+   296  544.477 MiB    0.000 MiB           1                feature_map_cus = customised_feature_maps.FeatureMap(num_qubits=feature_dim, depth=depth, degree=1, inverse=False)
+   297                                         
+   298  569.848 MiB   25.371 MiB           1                print("Custom feature map:\n", feature_map_cus)
+   299                                         
+   300  583.988 MiB   14.141 MiB           2                quantum_instance = QuantumInstance(
+   301  569.848 MiB    0.000 MiB           1                    backend, shots=1024, seed_simulator=seed, seed_transpiler=seed
+   302                                                      )
+   303                                                      
+   304  584.246 MiB    0.258 MiB           1                qkernel = QuantumKernel(feature_map=feature_map_cus, quantum_instance=quantum_instance)
+   305                                                   
+   306                                          
+   307  584.246 MiB    0.000 MiB           1              qsvc = QSVC(quantum_kernel=qkernel, probability=True, C=30)
+   308                                         
+   309  650.820 MiB    0.000 MiB           4              for i, (train, test) in enumerate(cv.split(X, y)):
+   310  650.816 MiB   50.137 MiB           3                  clfq = qsvc.fit(X[train], y[train])
+   311  650.820 MiB   16.434 MiB           3                  scores = clfq.decision_function(X[test])
+   312  650.820 MiB    0.000 MiB           3                  fpr, tpr, threshold = sklearn.metrics.roc_curve(y[test], scores)
+   313  650.820 MiB    0.000 MiB           3                  roc_auc = sklearn.metrics.auc(fpr, tpr)
+   314                                         
+   315  650.820 MiB    0.000 MiB           3                  print("ROC fold %d (AUC = %0.3f)" %(i+1, roc_auc))
+   316                                         
+   317  650.820 MiB    0.004 MiB           3                  interp_tpr = np.interp(mean_fpr, fpr, tpr)
+   318                                         
+   319  650.820 MiB    0.000 MiB           3                  interp_tpr[0] = 0.0
+   320  650.820 MiB    0.000 MiB           3                  tprsq.append(interp_tpr)
+   321  650.820 MiB    0.000 MiB           3                  aruc_QSVMs.append(roc_auc)
+   322                                         
+   323                                         
+   324  650.820 MiB    0.000 MiB           1              tpr_QSVM = np.mean(tprsq, axis=0)
+   325  650.820 MiB    0.000 MiB           1              fpr_QSVM = mean_fpr 
+   326                                         
+   327                                         
+   328  650.820 MiB    0.000 MiB           1              mean_qauc = sklearn.metrics.auc(fpr_QSVM, tpr_QSVM)
+   329                                         
+   330  650.820 MiB    0.000 MiB           1              aruc_QSVM = np.mean(aruc_QSVMs)
+   331  650.820 MiB    0.000 MiB           1              std_qauc = np.std(aruc_QSVMs)
+   332                                         
+   333                                                     
+   334                                                    #print(tpr_QSVM)
+   335                                                    #print(fpr_QSVM)
+   336  650.820 MiB    0.000 MiB           1              print("QSVM AUC:", aruc_QSVM)
+   337  650.820 MiB    0.000 MiB           1              print("QSVM AUC Mean: %s" % mean_qauc)
+   338  650.820 MiB    0.000 MiB           1              print("Standard deviation for quantum: %s" % np.std(aruc_QSVMs))
+   339                                         
+   340  650.820 MiB    0.000 MiB           1              time_in_svm = timer()
+   341                                                 
+   342  650.820 MiB    0.000 MiB           1           elif algo=="SVM":
+   343  650.820 MiB    0.000 MiB           1              print("SVM algorithm",algo)
+   344                                                    #--------------
+   345                                                    #Classical SVM
+   346                                                    #--------------
+   347                                                 
+   348  650.945 MiB    0.000 MiB           1              (
+   349  650.945 MiB    0.000 MiB           1                  X_train,
+   350  650.945 MiB    0.000 MiB           1                  X_test,
+   351  650.945 MiB    0.000 MiB           1                  y_train,
+   352  650.945 MiB    0.000 MiB           1                  y_test,
+   353  650.945 MiB    0.000 MiB           1                  XW_train,
+   354  650.945 MiB    0.000 MiB           1                  XW_test,
+   355  650.945 MiB    0.000 MiB           1                  train_dataset,
+   356  650.945 MiB    0.000 MiB           1                  test_dataset,
+   357  650.945 MiB    0.000 MiB           1                  signal_dataset,
+   358  650.945 MiB    0.000 MiB           1                  bkg_dataset,
+   359  650.945 MiB    0.000 MiB           1                  signal_weights,
+   360  650.945 MiB    0.000 MiB           1                  bkg_weights,
+   361  650.945 MiB    0.000 MiB           1                  X,
+   362  650.945 MiB    0.000 MiB           1                  y,
+   363  650.945 MiB  650.945 MiB           1              ) = Utilities.preparingData(varSetting, prossEvent=nEvent, removeNegativeWeight=False, fraction=sEvents, seed=rng, dataType="Classical")
+   364                                             
+   365  650.945 MiB    0.000 MiB           1              logging.info("The data processed for classical use in %s", timer() - data_Pro_time)
+   366                                            
+   367                                                    #svc = svm.SVC(kernel='rbf', probability=True, C=10, gamma=0.1)
+   368  650.945 MiB    0.000 MiB           1              svc = svm.SVC(kernel='rbf', probability=True, C=10, gamma=0.1)
+   369                                         
+   370                                         
+   371  650.984 MiB    0.000 MiB           4              for i, (train, test) in enumerate(cv.split(X, y)):
+   372  650.984 MiB    0.000 MiB           3                  clf = svc.fit(X[train], y[train])
+   373  650.984 MiB    0.039 MiB           3                  scores = clf.decision_function(X[test])
+   374  650.984 MiB    0.000 MiB           3                  fpr, tpr, threshold = sklearn.metrics.roc_curve(y[test], scores)
+   375  650.984 MiB    0.000 MiB           3                  roc_auc = sklearn.metrics.auc(fpr, tpr)
+   376                                         
+   377  650.984 MiB    0.000 MiB           3                  print("ROC fold %d (AUC = %0.3f)" %(i+1, roc_auc))
+   378                                         
+   379  650.984 MiB    0.000 MiB           3                  interp_tpr = np.interp(mean_fpr, fpr, tpr)
+   380                                         
+   381  650.984 MiB    0.000 MiB           3                  interp_tpr[0] = 0.0
+   382  650.984 MiB    0.000 MiB           3                  tprs.append(interp_tpr)
+   383  650.984 MiB    0.000 MiB           3                  aruc_SVMs.append(roc_auc)
+   384                                         
+   385                                         
+   386  650.988 MiB    0.004 MiB           1              tpr_SVM = np.mean(tprs, axis=0)
+   387  650.988 MiB    0.000 MiB           1              fpr_SVM = mean_fpr
+   388                                         
+   389                                         
+   390  650.988 MiB    0.000 MiB           1              mean_auc = sklearn.metrics.auc(fpr_SVM, tpr_SVM)
+   391                                         
+   392  650.988 MiB    0.000 MiB           1              aruc_SVM = np.mean(aruc_SVMs)
+   393  650.988 MiB    0.000 MiB           1              std_auc = np.std(aruc_SVMs)
+   394                                         
+   395                                         
+   396                                         
+   397  650.988 MiB    0.000 MiB           1              print("SVM AUC mean:", aruc_SVM)
+   398  650.988 MiB    0.000 MiB           1              print("SVM AUC check: %s" % mean_auc)
+   399  650.988 MiB    0.000 MiB           1              print("Standard deviation: %s" % np.std(aruc_SVMs))
+   400                                         
+   401  650.988 MiB    0.000 MiB           2              logging.info(
+   402  650.988 MiB    0.000 MiB           1                  "Classical kernel creation and plotting after fitting the data is %s s",
+   403  650.988 MiB    0.000 MiB           1                  timer() - time_in_svm,
+   404                                                    )
+   405                                                    
+   406  650.988 MiB    0.000 MiB           1       if "both" in opt['backend']: 
+   407                                                plotROC_IBM(tpr_QSVM, fpr_QSVM, aruc_QSVM, std_qauc, tpr_QSVM_ibm, fpr_QSVM_ibm, aruc_QSVM_ibm, std_qauc_ibm, tpr_SVM, fpr_SVM, aruc_SVM, std_auc, "ROC_evn%s_%s_class_2" %(nEvent, Gentangle)) 
+   408                                             else:
+   409  659.879 MiB    8.891 MiB           1          Plotter.plotROCcurve(tpr_QSVM, fpr_QSVM, aruc_QSVM, std_qauc, tpr_SVM, fpr_SVM, aruc_SVM, std_auc, "ROC_evn%s_%s_class_2" %(nEvent, Gentangle))
+
+
+Filename: bin/classification.py
+
+Line #    Mem usage    Increment  Occurrences   Line Contents
+=============================================================
+   411  522.773 MiB  522.773 MiB           1   @profile
+   412                                         def main():
+   413                                             global opt
+   414  522.773 MiB  522.773 MiB           1       opt = LoadOptions()
+   415  659.926 MiB  659.926 MiB           1       classification(opt)
+

@@ -1,0 +1,260 @@
+
+[1mRooFit v3.60 -- Developed by Wouter Verkerke and David Kirkby[0m 
+                Copyright (C) 2000-2013 NIKHEF, University of California & Stanford University
+                All rights reserved, please read http://roofit.sourceforge.net/license.txt
+
+number of signal: 4000 number of background: 4000
+The data will be prepared for the quantum case so no transformation is needed.
+Number of qubits used is 9 it should be the number of the variables used in the trainning.
+**********************************************************
+*******             NO QSVM results           ************
+**********************************************************
+C_number:
+ 1
+gamma_number:
+ 0.1
+SVM algorithm SVM
+number of signal: 4000 number of background: 4000
+The data will be prepared for the classical case so transformation is needed.
+RandomState(MT19937)
+# Tuning hyper-parameters for roc_auc
+
+Best parameters set found on development set:
+
+{'C': 70, 'gamma': 0.01, 'kernel': 'rbf'}
+0.9530820616789102
+
+Grid scores on development set:
+
+0.933 (+/-0.007) for {'C': 1, 'gamma': 0.01, 'kernel': 'rbf'}
+0.943 (+/-0.006) for {'C': 1, 'gamma': 0.02, 'kernel': 'rbf'}
+0.950 (+/-0.008) for {'C': 1, 'gamma': 0.05, 'kernel': 'rbf'}
+0.951 (+/-0.010) for {'C': 1, 'gamma': 0.1, 'kernel': 'rbf'}
+0.948 (+/-0.012) for {'C': 1, 'gamma': 0.2, 'kernel': 'rbf'}
+0.938 (+/-0.014) for {'C': 1, 'gamma': 0.5, 'kernel': 'rbf'}
+0.938 (+/-0.007) for {'C': 2, 'gamma': 0.01, 'kernel': 'rbf'}
+0.947 (+/-0.006) for {'C': 2, 'gamma': 0.02, 'kernel': 'rbf'}
+0.952 (+/-0.009) for {'C': 2, 'gamma': 0.05, 'kernel': 'rbf'}
+0.951 (+/-0.010) for {'C': 2, 'gamma': 0.1, 'kernel': 'rbf'}
+0.947 (+/-0.012) for {'C': 2, 'gamma': 0.2, 'kernel': 'rbf'}
+0.933 (+/-0.015) for {'C': 2, 'gamma': 0.5, 'kernel': 'rbf'}
+0.941 (+/-0.006) for {'C': 3, 'gamma': 0.01, 'kernel': 'rbf'}
+0.949 (+/-0.007) for {'C': 3, 'gamma': 0.02, 'kernel': 'rbf'}
+0.952 (+/-0.009) for {'C': 3, 'gamma': 0.05, 'kernel': 'rbf'}
+0.951 (+/-0.010) for {'C': 3, 'gamma': 0.1, 'kernel': 'rbf'}
+0.945 (+/-0.012) for {'C': 3, 'gamma': 0.2, 'kernel': 'rbf'}
+0.928 (+/-0.014) for {'C': 3, 'gamma': 0.5, 'kernel': 'rbf'}
+0.943 (+/-0.006) for {'C': 4, 'gamma': 0.01, 'kernel': 'rbf'}
+0.950 (+/-0.007) for {'C': 4, 'gamma': 0.02, 'kernel': 'rbf'}
+0.953 (+/-0.008) for {'C': 4, 'gamma': 0.05, 'kernel': 'rbf'}
+0.950 (+/-0.010) for {'C': 4, 'gamma': 0.1, 'kernel': 'rbf'}
+0.944 (+/-0.011) for {'C': 4, 'gamma': 0.2, 'kernel': 'rbf'}
+0.925 (+/-0.013) for {'C': 4, 'gamma': 0.5, 'kernel': 'rbf'}
+0.944 (+/-0.006) for {'C': 5, 'gamma': 0.01, 'kernel': 'rbf'}
+0.951 (+/-0.007) for {'C': 5, 'gamma': 0.02, 'kernel': 'rbf'}
+0.953 (+/-0.008) for {'C': 5, 'gamma': 0.05, 'kernel': 'rbf'}
+0.950 (+/-0.010) for {'C': 5, 'gamma': 0.1, 'kernel': 'rbf'}
+0.943 (+/-0.010) for {'C': 5, 'gamma': 0.2, 'kernel': 'rbf'}
+0.922 (+/-0.014) for {'C': 5, 'gamma': 0.5, 'kernel': 'rbf'}
+0.946 (+/-0.006) for {'C': 6, 'gamma': 0.01, 'kernel': 'rbf'}
+0.951 (+/-0.007) for {'C': 6, 'gamma': 0.02, 'kernel': 'rbf'}
+0.952 (+/-0.008) for {'C': 6, 'gamma': 0.05, 'kernel': 'rbf'}
+0.949 (+/-0.010) for {'C': 6, 'gamma': 0.1, 'kernel': 'rbf'}
+0.942 (+/-0.009) for {'C': 6, 'gamma': 0.2, 'kernel': 'rbf'}
+0.920 (+/-0.014) for {'C': 6, 'gamma': 0.5, 'kernel': 'rbf'}
+0.946 (+/-0.006) for {'C': 7, 'gamma': 0.01, 'kernel': 'rbf'}
+0.952 (+/-0.007) for {'C': 7, 'gamma': 0.02, 'kernel': 'rbf'}
+0.952 (+/-0.008) for {'C': 7, 'gamma': 0.05, 'kernel': 'rbf'}
+0.949 (+/-0.010) for {'C': 7, 'gamma': 0.1, 'kernel': 'rbf'}
+0.941 (+/-0.008) for {'C': 7, 'gamma': 0.2, 'kernel': 'rbf'}
+0.918 (+/-0.014) for {'C': 7, 'gamma': 0.5, 'kernel': 'rbf'}
+0.947 (+/-0.006) for {'C': 8, 'gamma': 0.01, 'kernel': 'rbf'}
+0.952 (+/-0.008) for {'C': 8, 'gamma': 0.02, 'kernel': 'rbf'}
+0.952 (+/-0.008) for {'C': 8, 'gamma': 0.05, 'kernel': 'rbf'}
+0.948 (+/-0.010) for {'C': 8, 'gamma': 0.1, 'kernel': 'rbf'}
+0.939 (+/-0.008) for {'C': 8, 'gamma': 0.2, 'kernel': 'rbf'}
+0.917 (+/-0.014) for {'C': 8, 'gamma': 0.5, 'kernel': 'rbf'}
+0.948 (+/-0.006) for {'C': 9, 'gamma': 0.01, 'kernel': 'rbf'}
+0.952 (+/-0.008) for {'C': 9, 'gamma': 0.02, 'kernel': 'rbf'}
+0.952 (+/-0.009) for {'C': 9, 'gamma': 0.05, 'kernel': 'rbf'}
+0.948 (+/-0.010) for {'C': 9, 'gamma': 0.1, 'kernel': 'rbf'}
+0.938 (+/-0.007) for {'C': 9, 'gamma': 0.2, 'kernel': 'rbf'}
+0.916 (+/-0.013) for {'C': 9, 'gamma': 0.5, 'kernel': 'rbf'}
+0.948 (+/-0.006) for {'C': 10, 'gamma': 0.01, 'kernel': 'rbf'}
+0.952 (+/-0.008) for {'C': 10, 'gamma': 0.02, 'kernel': 'rbf'}
+0.952 (+/-0.009) for {'C': 10, 'gamma': 0.05, 'kernel': 'rbf'}
+0.948 (+/-0.010) for {'C': 10, 'gamma': 0.1, 'kernel': 'rbf'}
+0.937 (+/-0.007) for {'C': 10, 'gamma': 0.2, 'kernel': 'rbf'}
+0.915 (+/-0.014) for {'C': 10, 'gamma': 0.5, 'kernel': 'rbf'}
+0.949 (+/-0.007) for {'C': 12, 'gamma': 0.01, 'kernel': 'rbf'}
+0.952 (+/-0.008) for {'C': 12, 'gamma': 0.02, 'kernel': 'rbf'}
+0.951 (+/-0.009) for {'C': 12, 'gamma': 0.05, 'kernel': 'rbf'}
+0.947 (+/-0.010) for {'C': 12, 'gamma': 0.1, 'kernel': 'rbf'}
+0.935 (+/-0.007) for {'C': 12, 'gamma': 0.2, 'kernel': 'rbf'}
+0.914 (+/-0.013) for {'C': 12, 'gamma': 0.5, 'kernel': 'rbf'}
+0.950 (+/-0.007) for {'C': 14, 'gamma': 0.01, 'kernel': 'rbf'}
+0.953 (+/-0.009) for {'C': 14, 'gamma': 0.02, 'kernel': 'rbf'}
+0.951 (+/-0.010) for {'C': 14, 'gamma': 0.05, 'kernel': 'rbf'}
+0.947 (+/-0.009) for {'C': 14, 'gamma': 0.1, 'kernel': 'rbf'}
+0.933 (+/-0.006) for {'C': 14, 'gamma': 0.2, 'kernel': 'rbf'}
+0.913 (+/-0.012) for {'C': 14, 'gamma': 0.5, 'kernel': 'rbf'}
+0.950 (+/-0.007) for {'C': 16, 'gamma': 0.01, 'kernel': 'rbf'}
+0.953 (+/-0.009) for {'C': 16, 'gamma': 0.02, 'kernel': 'rbf'}
+0.951 (+/-0.010) for {'C': 16, 'gamma': 0.05, 'kernel': 'rbf'}
+0.946 (+/-0.009) for {'C': 16, 'gamma': 0.1, 'kernel': 'rbf'}
+0.932 (+/-0.005) for {'C': 16, 'gamma': 0.2, 'kernel': 'rbf'}
+0.912 (+/-0.012) for {'C': 16, 'gamma': 0.5, 'kernel': 'rbf'}
+0.951 (+/-0.007) for {'C': 18, 'gamma': 0.01, 'kernel': 'rbf'}
+0.953 (+/-0.009) for {'C': 18, 'gamma': 0.02, 'kernel': 'rbf'}
+0.950 (+/-0.010) for {'C': 18, 'gamma': 0.05, 'kernel': 'rbf'}
+0.945 (+/-0.008) for {'C': 18, 'gamma': 0.1, 'kernel': 'rbf'}
+0.931 (+/-0.004) for {'C': 18, 'gamma': 0.2, 'kernel': 'rbf'}
+0.911 (+/-0.013) for {'C': 18, 'gamma': 0.5, 'kernel': 'rbf'}
+0.951 (+/-0.008) for {'C': 20, 'gamma': 0.01, 'kernel': 'rbf'}
+0.953 (+/-0.009) for {'C': 20, 'gamma': 0.02, 'kernel': 'rbf'}
+0.950 (+/-0.010) for {'C': 20, 'gamma': 0.05, 'kernel': 'rbf'}
+0.944 (+/-0.007) for {'C': 20, 'gamma': 0.1, 'kernel': 'rbf'}
+0.930 (+/-0.003) for {'C': 20, 'gamma': 0.2, 'kernel': 'rbf'}
+0.910 (+/-0.013) for {'C': 20, 'gamma': 0.5, 'kernel': 'rbf'}
+0.951 (+/-0.008) for {'C': 22, 'gamma': 0.01, 'kernel': 'rbf'}
+0.953 (+/-0.009) for {'C': 22, 'gamma': 0.02, 'kernel': 'rbf'}
+0.950 (+/-0.010) for {'C': 22, 'gamma': 0.05, 'kernel': 'rbf'}
+0.943 (+/-0.007) for {'C': 22, 'gamma': 0.1, 'kernel': 'rbf'}
+0.929 (+/-0.003) for {'C': 22, 'gamma': 0.2, 'kernel': 'rbf'}
+0.909 (+/-0.013) for {'C': 22, 'gamma': 0.5, 'kernel': 'rbf'}
+0.951 (+/-0.008) for {'C': 24, 'gamma': 0.01, 'kernel': 'rbf'}
+0.953 (+/-0.009) for {'C': 24, 'gamma': 0.02, 'kernel': 'rbf'}
+0.950 (+/-0.010) for {'C': 24, 'gamma': 0.05, 'kernel': 'rbf'}
+0.943 (+/-0.006) for {'C': 24, 'gamma': 0.1, 'kernel': 'rbf'}
+0.928 (+/-0.003) for {'C': 24, 'gamma': 0.2, 'kernel': 'rbf'}
+0.909 (+/-0.013) for {'C': 24, 'gamma': 0.5, 'kernel': 'rbf'}
+0.951 (+/-0.008) for {'C': 26, 'gamma': 0.01, 'kernel': 'rbf'}
+0.953 (+/-0.009) for {'C': 26, 'gamma': 0.02, 'kernel': 'rbf'}
+0.950 (+/-0.010) for {'C': 26, 'gamma': 0.05, 'kernel': 'rbf'}
+0.942 (+/-0.005) for {'C': 26, 'gamma': 0.1, 'kernel': 'rbf'}
+0.927 (+/-0.003) for {'C': 26, 'gamma': 0.2, 'kernel': 'rbf'}
+0.909 (+/-0.013) for {'C': 26, 'gamma': 0.5, 'kernel': 'rbf'}
+0.952 (+/-0.008) for {'C': 28, 'gamma': 0.01, 'kernel': 'rbf'}
+0.953 (+/-0.009) for {'C': 28, 'gamma': 0.02, 'kernel': 'rbf'}
+0.950 (+/-0.010) for {'C': 28, 'gamma': 0.05, 'kernel': 'rbf'}
+0.941 (+/-0.005) for {'C': 28, 'gamma': 0.1, 'kernel': 'rbf'}
+0.927 (+/-0.003) for {'C': 28, 'gamma': 0.2, 'kernel': 'rbf'}
+0.908 (+/-0.013) for {'C': 28, 'gamma': 0.5, 'kernel': 'rbf'}
+0.952 (+/-0.008) for {'C': 30, 'gamma': 0.01, 'kernel': 'rbf'}
+0.953 (+/-0.009) for {'C': 30, 'gamma': 0.02, 'kernel': 'rbf'}
+0.950 (+/-0.010) for {'C': 30, 'gamma': 0.05, 'kernel': 'rbf'}
+0.941 (+/-0.005) for {'C': 30, 'gamma': 0.1, 'kernel': 'rbf'}
+0.926 (+/-0.004) for {'C': 30, 'gamma': 0.2, 'kernel': 'rbf'}
+0.908 (+/-0.013) for {'C': 30, 'gamma': 0.5, 'kernel': 'rbf'}
+0.952 (+/-0.008) for {'C': 32, 'gamma': 0.01, 'kernel': 'rbf'}
+0.953 (+/-0.009) for {'C': 32, 'gamma': 0.02, 'kernel': 'rbf'}
+0.949 (+/-0.010) for {'C': 32, 'gamma': 0.05, 'kernel': 'rbf'}
+0.940 (+/-0.005) for {'C': 32, 'gamma': 0.1, 'kernel': 'rbf'}
+0.925 (+/-0.004) for {'C': 32, 'gamma': 0.2, 'kernel': 'rbf'}
+0.908 (+/-0.012) for {'C': 32, 'gamma': 0.5, 'kernel': 'rbf'}
+0.952 (+/-0.008) for {'C': 34, 'gamma': 0.01, 'kernel': 'rbf'}
+0.952 (+/-0.009) for {'C': 34, 'gamma': 0.02, 'kernel': 'rbf'}
+0.949 (+/-0.010) for {'C': 34, 'gamma': 0.05, 'kernel': 'rbf'}
+0.940 (+/-0.005) for {'C': 34, 'gamma': 0.1, 'kernel': 'rbf'}
+0.925 (+/-0.004) for {'C': 34, 'gamma': 0.2, 'kernel': 'rbf'}
+0.908 (+/-0.012) for {'C': 34, 'gamma': 0.5, 'kernel': 'rbf'}
+0.952 (+/-0.008) for {'C': 36, 'gamma': 0.01, 'kernel': 'rbf'}
+0.952 (+/-0.009) for {'C': 36, 'gamma': 0.02, 'kernel': 'rbf'}
+0.949 (+/-0.010) for {'C': 36, 'gamma': 0.05, 'kernel': 'rbf'}
+0.939 (+/-0.005) for {'C': 36, 'gamma': 0.1, 'kernel': 'rbf'}
+0.924 (+/-0.005) for {'C': 36, 'gamma': 0.2, 'kernel': 'rbf'}
+0.908 (+/-0.013) for {'C': 36, 'gamma': 0.5, 'kernel': 'rbf'}
+0.952 (+/-0.008) for {'C': 38, 'gamma': 0.01, 'kernel': 'rbf'}
+0.952 (+/-0.009) for {'C': 38, 'gamma': 0.02, 'kernel': 'rbf'}
+0.949 (+/-0.010) for {'C': 38, 'gamma': 0.05, 'kernel': 'rbf'}
+0.939 (+/-0.005) for {'C': 38, 'gamma': 0.1, 'kernel': 'rbf'}
+0.924 (+/-0.005) for {'C': 38, 'gamma': 0.2, 'kernel': 'rbf'}
+0.907 (+/-0.013) for {'C': 38, 'gamma': 0.5, 'kernel': 'rbf'}
+0.952 (+/-0.008) for {'C': 40, 'gamma': 0.01, 'kernel': 'rbf'}
+0.952 (+/-0.009) for {'C': 40, 'gamma': 0.02, 'kernel': 'rbf'}
+0.949 (+/-0.010) for {'C': 40, 'gamma': 0.05, 'kernel': 'rbf'}
+0.939 (+/-0.005) for {'C': 40, 'gamma': 0.1, 'kernel': 'rbf'}
+0.923 (+/-0.005) for {'C': 40, 'gamma': 0.2, 'kernel': 'rbf'}
+0.907 (+/-0.013) for {'C': 40, 'gamma': 0.5, 'kernel': 'rbf'}
+0.953 (+/-0.009) for {'C': 50, 'gamma': 0.01, 'kernel': 'rbf'}
+0.952 (+/-0.009) for {'C': 50, 'gamma': 0.02, 'kernel': 'rbf'}
+0.948 (+/-0.009) for {'C': 50, 'gamma': 0.05, 'kernel': 'rbf'}
+0.937 (+/-0.005) for {'C': 50, 'gamma': 0.1, 'kernel': 'rbf'}
+0.920 (+/-0.006) for {'C': 50, 'gamma': 0.2, 'kernel': 'rbf'}
+0.907 (+/-0.013) for {'C': 50, 'gamma': 0.5, 'kernel': 'rbf'}
+0.953 (+/-0.009) for {'C': 55, 'gamma': 0.01, 'kernel': 'rbf'}
+0.952 (+/-0.009) for {'C': 55, 'gamma': 0.02, 'kernel': 'rbf'}
+0.948 (+/-0.009) for {'C': 55, 'gamma': 0.05, 'kernel': 'rbf'}
+0.936 (+/-0.005) for {'C': 55, 'gamma': 0.1, 'kernel': 'rbf'}
+0.920 (+/-0.006) for {'C': 55, 'gamma': 0.2, 'kernel': 'rbf'}
+0.907 (+/-0.013) for {'C': 55, 'gamma': 0.5, 'kernel': 'rbf'}
+0.953 (+/-0.010) for {'C': 60, 'gamma': 0.01, 'kernel': 'rbf'}
+0.952 (+/-0.009) for {'C': 60, 'gamma': 0.02, 'kernel': 'rbf'}
+0.948 (+/-0.008) for {'C': 60, 'gamma': 0.05, 'kernel': 'rbf'}
+0.935 (+/-0.005) for {'C': 60, 'gamma': 0.1, 'kernel': 'rbf'}
+0.919 (+/-0.006) for {'C': 60, 'gamma': 0.2, 'kernel': 'rbf'}
+0.906 (+/-0.013) for {'C': 60, 'gamma': 0.5, 'kernel': 'rbf'}
+0.953 (+/-0.010) for {'C': 65, 'gamma': 0.01, 'kernel': 'rbf'}
+0.951 (+/-0.009) for {'C': 65, 'gamma': 0.02, 'kernel': 'rbf'}
+0.948 (+/-0.008) for {'C': 65, 'gamma': 0.05, 'kernel': 'rbf'}
+0.935 (+/-0.005) for {'C': 65, 'gamma': 0.1, 'kernel': 'rbf'}
+0.918 (+/-0.007) for {'C': 65, 'gamma': 0.2, 'kernel': 'rbf'}
+0.906 (+/-0.014) for {'C': 65, 'gamma': 0.5, 'kernel': 'rbf'}
+0.953 (+/-0.010) for {'C': 70, 'gamma': 0.01, 'kernel': 'rbf'}
+0.951 (+/-0.009) for {'C': 70, 'gamma': 0.02, 'kernel': 'rbf'}
+0.947 (+/-0.008) for {'C': 70, 'gamma': 0.05, 'kernel': 'rbf'}
+0.934 (+/-0.005) for {'C': 70, 'gamma': 0.1, 'kernel': 'rbf'}
+0.917 (+/-0.007) for {'C': 70, 'gamma': 0.2, 'kernel': 'rbf'}
+0.906 (+/-0.014) for {'C': 70, 'gamma': 0.5, 'kernel': 'rbf'}
+0.953 (+/-0.010) for {'C': 75, 'gamma': 0.01, 'kernel': 'rbf'}
+0.951 (+/-0.010) for {'C': 75, 'gamma': 0.02, 'kernel': 'rbf'}
+0.947 (+/-0.008) for {'C': 75, 'gamma': 0.05, 'kernel': 'rbf'}
+0.933 (+/-0.005) for {'C': 75, 'gamma': 0.1, 'kernel': 'rbf'}
+0.917 (+/-0.008) for {'C': 75, 'gamma': 0.2, 'kernel': 'rbf'}
+0.906 (+/-0.014) for {'C': 75, 'gamma': 0.5, 'kernel': 'rbf'}
+0.953 (+/-0.010) for {'C': 80, 'gamma': 0.01, 'kernel': 'rbf'}
+0.951 (+/-0.010) for {'C': 80, 'gamma': 0.02, 'kernel': 'rbf'}
+0.947 (+/-0.008) for {'C': 80, 'gamma': 0.05, 'kernel': 'rbf'}
+0.932 (+/-0.005) for {'C': 80, 'gamma': 0.1, 'kernel': 'rbf'}
+0.916 (+/-0.008) for {'C': 80, 'gamma': 0.2, 'kernel': 'rbf'}
+0.906 (+/-0.014) for {'C': 80, 'gamma': 0.5, 'kernel': 'rbf'}
+0.953 (+/-0.010) for {'C': 85, 'gamma': 0.01, 'kernel': 'rbf'}
+0.951 (+/-0.010) for {'C': 85, 'gamma': 0.02, 'kernel': 'rbf'}
+0.947 (+/-0.007) for {'C': 85, 'gamma': 0.05, 'kernel': 'rbf'}
+0.931 (+/-0.005) for {'C': 85, 'gamma': 0.1, 'kernel': 'rbf'}
+0.915 (+/-0.008) for {'C': 85, 'gamma': 0.2, 'kernel': 'rbf'}
+0.906 (+/-0.014) for {'C': 85, 'gamma': 0.5, 'kernel': 'rbf'}
+0.953 (+/-0.010) for {'C': 90, 'gamma': 0.01, 'kernel': 'rbf'}
+0.951 (+/-0.010) for {'C': 90, 'gamma': 0.02, 'kernel': 'rbf'}
+0.946 (+/-0.007) for {'C': 90, 'gamma': 0.05, 'kernel': 'rbf'}
+0.931 (+/-0.005) for {'C': 90, 'gamma': 0.1, 'kernel': 'rbf'}
+0.915 (+/-0.009) for {'C': 90, 'gamma': 0.2, 'kernel': 'rbf'}
+0.906 (+/-0.014) for {'C': 90, 'gamma': 0.5, 'kernel': 'rbf'}
+0.953 (+/-0.010) for {'C': 95, 'gamma': 0.01, 'kernel': 'rbf'}
+0.951 (+/-0.010) for {'C': 95, 'gamma': 0.02, 'kernel': 'rbf'}
+0.946 (+/-0.007) for {'C': 95, 'gamma': 0.05, 'kernel': 'rbf'}
+0.930 (+/-0.005) for {'C': 95, 'gamma': 0.1, 'kernel': 'rbf'}
+0.914 (+/-0.009) for {'C': 95, 'gamma': 0.2, 'kernel': 'rbf'}
+0.906 (+/-0.014) for {'C': 95, 'gamma': 0.5, 'kernel': 'rbf'}
+0.953 (+/-0.010) for {'C': 100, 'gamma': 0.01, 'kernel': 'rbf'}
+0.951 (+/-0.010) for {'C': 100, 'gamma': 0.02, 'kernel': 'rbf'}
+0.945 (+/-0.007) for {'C': 100, 'gamma': 0.05, 'kernel': 'rbf'}
+0.929 (+/-0.005) for {'C': 100, 'gamma': 0.1, 'kernel': 'rbf'}
+0.913 (+/-0.009) for {'C': 100, 'gamma': 0.2, 'kernel': 'rbf'}
+0.906 (+/-0.014) for {'C': 100, 'gamma': 0.5, 'kernel': 'rbf'}
+
+Detailed classification report:
+
+The model is trained on the full development set.
+The scores are computed on the full evaluation set.
+
+              precision    recall  f1-score   support
+
+        -1.0       0.91      0.89      0.90       991
+         1.0       0.89      0.91      0.90      1009
+
+    accuracy                           0.90      2000
+   macro avg       0.90      0.90      0.90      2000
+weighted avg       0.90      0.90      0.90      2000
+
+
