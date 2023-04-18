@@ -100,9 +100,9 @@ def LoadOptions():
 
 def classification(opt):
 
-    varSetting = "config_vvH_9.json"
+    varSetting = "config_vvH_13.json"
 
-    config = Utilities.readConfig("config_vvH_9.json")
+    config = Utilities.readConfig("config_vvH_13.json")
     
     
     # use -1 for all the events
@@ -111,7 +111,7 @@ def classification(opt):
     cnumb = opt['cnumb']
     gamma_numb = opt['gamma']
     
-    #algorithm = ["QSVM","SVM"]
+#    algorithm = ["QSVM","SVM"]
     #algorithm = ["QSVM"]
     algorithm = ["SVM"]
     
@@ -174,11 +174,11 @@ def classification(opt):
             ) = Utilities.preparingData(varSetting, prossEvent=nEvent, fraction=sEvents, seed=rng, dataType="Quantum")
            
            
-            #print("signal_dataset:")
-            #print(signal_dataset)
-            #print("bkg_dataset:")
-            #print(bkg_dataset)
-            #Plotter.plotVars(config, signal_dataset, bkg_dataset, "")
+            print("signal_dataset:")
+            print(signal_dataset)
+            print("bkg_dataset:")
+            print(bkg_dataset)
+            Plotter.plotVars(config, signal_dataset, bkg_dataset, "")
             logging.info("The data processed for quantum use in %s", timer() - data_Pro_time)
            
             time_in_qsvm = timer()
@@ -287,7 +287,7 @@ def classification(opt):
             elif 'sim' in opt['backend']:
                 backend = BasicAer.get_backend("statevector_simulator")  
 
-                feature_map_cus = customised_feature_maps.FeatureMap(num_qubits=feature_dim, depth=depth, degree=1, inverse=False)
+                feature_map_cus = customised_feature_maps.FeatureMap(num_qubits=16, depth=depth, degree=1, inverse=False)
 
                 print("Custom feature map:\n", feature_map_cus)
                 #print("C_number:\n", cnumb)

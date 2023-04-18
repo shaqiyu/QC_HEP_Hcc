@@ -14,7 +14,7 @@
 
 #python3 bin/classification.py -e Full -n 100 -d 1 -b sim #ibmq #sim
 #python3 bin/classification2.py -n 10 -d 1 -b both -c 10
-python3 bin/classification.py -n 4000 -d 1 -b sim #ibmq #sim
+python3 bin/classification.py -n 2000 -d 1 -b sim #ibmq #sim
 #python3 bin/classification.py -n 7000 -d 1 -b sim #ibmq #sim
 #python3 bin/classification.py -n 8000 -d 1 -b sim #ibmq #sim
 #python3 bin/classification.py -n 9000 -d 1 -b sim #ibmq #sim

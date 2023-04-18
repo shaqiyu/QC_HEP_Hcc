@@ -11,7 +11,8 @@ sys.path.insert(0, "{}/modules/".format(cwd))
 import numpy as np
 
 
-def getHistograms(config, dataset, weights, j, min, max, sample="signal"):
+def getHistograms(config, dataset, j, min, max, sample="signal"):
+#def getHistograms(config, dataset, weights, j, min, max, sample="signal"):
     # h=ROOT.TH1F(sample+"_"+config["var_signal"][j],sample+"_"+config["var_signal"][j],100,min,int(max/10+12))
     h = ROOT.TH1F(
         sample + "_" + config["var_signal"][j],
@@ -25,7 +26,8 @@ def getHistograms(config, dataset, weights, j, min, max, sample="signal"):
         #    logging("processing variable "+str(j)+" : "+str(i)+"/"+str(len(dataset)))
         # if i%10000==0 :
         #   print(weights[i])
-        h.Fill(dataset[i][j], weights[i])
+        h.Fill(dataset[i][j])
+        #h.Fill(dataset[i][j], weights[i])
         # print("Column:",dataset[i][j], "weight:",weights[i])
         # h.Fill(dataset[i][j])
     h.GetXaxis().SetTitle(config["var_name"][j])

@@ -1,4 +1,4 @@
-INFO:Start time 501848.094591163
+INFO:Start time 8975621.792594079
 INFO:Loading ROOT module...
 INFO:Signal sample(s) ['../sample/vvH/Sig/vvH_bbccgg.root']
 INFO:Background sample(s) ['../sample/vvH/Bkg/bkg.root']
@@ -6,18 +6,18 @@ INFO:Signal(s) tree name output
 INFO:Background(s) tree name output
 INFO:Signal(s) weight variable weight
 INFO:Background(s) weight variable weight
-INFO:Signal(s) variables ['JetsRecoilMass', 'visEn', 'LeadLepEn', 'multiplicity', 'LeadneutralEn', 'Pt', 'Pl', 'Y23', 'JetsInvMass']
-INFO:Background(s) variables ['JetsRecoilMass', 'visEn', 'LeadLepEn', 'multiplicity', 'LeadneutralEn', 'Pt', 'Pl', 'Y23', 'JetsInvMass']
+INFO:Signal(s) variables ['JetsRecoilMass', 'visEn', 'LeadLepEn', 'multiplicity', 'LeadneutralEn', 'Pt', 'Pl', 'JetsInvMass', 'Y23', 'Y34', 'Y45', 'Thrust', 'cosTthrust']
+INFO:Background(s) variables ['JetsRecoilMass', 'visEn', 'LeadLepEn', 'multiplicity', 'LeadneutralEn', 'Pt', 'Pl', 'JetsInvMass', 'Y23', 'Y34', 'Y45', 'Thrust', 'cosTthrust']
 INFO:Signal sample(s) ['../sample/vvH/Sig/vvH_bbccgg.root']
 INFO:Background sample(s) ['../sample/vvH/Bkg/bkg.root']
 INFO:Signal(s) tree name output
 INFO:Background(s) tree name output
 INFO:Signal(s) weight variable weight
 INFO:Background(s) weight variable weight
-INFO:Signal(s) variables ['JetsRecoilMass', 'visEn', 'LeadLepEn', 'multiplicity', 'LeadneutralEn', 'Pt', 'Pl', 'Y23', 'JetsInvMass']
-INFO:Background(s) variables ['JetsRecoilMass', 'visEn', 'LeadLepEn', 'multiplicity', 'LeadneutralEn', 'Pt', 'Pl', 'Y23', 'JetsInvMass']
-INFO:Total number of signal : 4000
-INFO:Total number of backgrouns : 4000
+INFO:Signal(s) variables ['JetsRecoilMass', 'visEn', 'LeadLepEn', 'multiplicity', 'LeadneutralEn', 'Pt', 'Pl', 'JetsInvMass', 'Y23', 'Y34', 'Y45', 'Thrust', 'cosTthrust']
+INFO:Background(s) variables ['JetsRecoilMass', 'visEn', 'LeadLepEn', 'multiplicity', 'LeadneutralEn', 'Pt', 'Pl', 'JetsInvMass', 'Y23', 'Y34', 'Y45', 'Thrust', 'cosTthrust']
+INFO:Total number of signal : 2000
+INFO:Total number of backgrouns : 2000
 INFO:Train size : 2000
 INFO:Testing size : 2000
-INFO:The data processed for classical use in 0.8691469270270318
+INFO:The data processed for classical use in 1.0234277956187725

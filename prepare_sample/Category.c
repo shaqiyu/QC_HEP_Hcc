@@ -49,6 +49,7 @@ void Cate(TChain &chainname, TString outputname)
     TTreeReaderArray<int> B2Quark(Reader, "B2Quark");
     TTreeReaderArray<int> OriLepPDG(Reader, "OriLepPDG");
 
+    //TTreeReaderArray<float> hbbL(myReader, "HbbL");
     TTreeReaderArray<float> HbbL(Reader, "HbbL");
     TTreeReaderArray<float> HccL(Reader, "HccL");
     TTreeReaderArray<float> HooL(Reader, "HooL");
@@ -69,6 +70,7 @@ void Cate(TChain &chainname, TString outputname)
     TTreeReaderArray<float> HiggsX(Reader, "HiggsX");
     TTreeReaderArray<float> HiggsSumL(Reader, "HiggsSumL");
     TTreeReaderArray<float> jetPx(Reader, "jetPx");
+    //TTreeReaderArray<float> jetPx(Reader, "jetPx");
     TTreeReaderArray<float> jetPy(Reader, "jetPy");
     TTreeReaderArray<float> jetPz(Reader, "jetPz");
     TTreeReaderArray<float> jetEn(Reader, "jetEn");
@@ -187,6 +189,9 @@ void Cate(TChain &chainname, TString outputname)
     bool pass_sigcutbb;
     bool pass_sigcutcc;
     bool pass_sigcutgg;
+    float j1_px, j1_py, j1_pz, j1_En, j2_px, j2_py, j2_pz, j2_En;
+    float j1_HbbL, j1_HccL, j1_HooL, j1_HbcL, j1_ZbbL, j1_ZccL, j1_ZooL, J1_ZbcL;
+    float j2_HbbL, j2_HccL, j2_HooL, j2_HbcL, j2_ZbbL, j2_ZccL, j2_ZooL, j2_ZbcL;
     int O_noHQPDG[4], O_HQPDG[4], O_B1Quark[2], O_B2Quark[2], O_OriLepPDG[4];
     float O_HbbL[2], O_HccL[2], O_HooL[2], O_HbcL[2], O_ZbbL[2], O_ZccL[2], O_ZooL[2], O_ZbcL[2], O_ISREn[5], O_ISRCosTheta[5];
     float O_HiggsX[4], O_HiggsSumL[4], O_jetPx[4], O_jetPy[4], O_jetPz[4], O_jetEn[4], O_numChargeOfJets[4];
@@ -207,6 +212,28 @@ void Cate(TChain &chainname, TString outputname)
 
     output.Branch("boson1Quark",        &O_boson1Quark);
     output.Branch("boson2Quark",        &O_boson2Quark);
+
+    output.Branch("j1_px",              &j1_px      );
+    output.Branch("j1_py",              &j1_py      );
+    output.Branch("j1_pz",              &j1_pz      );
+    output.Branch("j1_En",              &j1_En      );
+    output.Branch("j2_px",              &j2_px      );
+    output.Branch("j2_py",              &j2_py      );
+    output.Branch("j2_pz",              &j2_pz      );
+    output.Branch("j2_En",              &j2_En      );
+
+    output.Branch("j1_HbbL",            &j1_HbbL      );
+    output.Branch("j1_HccL",            &j1_HccL      );
+    output.Branch("j1_HooL",            &j1_HooL      );
+    output.Branch("j1_ZbbL",            &j1_ZbbL      );
+    output.Branch("j1_ZccL",            &j1_ZccL      );
+    output.Branch("j1_ZooL",            &j1_ZooL      );
+    output.Branch("j2_HbbL",            &j2_HbbL      );
+    output.Branch("j2_HccL",            &j2_HccL      );
+    output.Branch("j2_HooL",            &j2_HooL      );
+    output.Branch("j2_ZbbL",            &j2_ZbbL      );
+    output.Branch("j2_ZccL",            &j2_ZccL      );
+    output.Branch("j2_ZooL",            &j2_ZooL      );
 
     output.Branch("HiggsJetsAngle",     &O_HiggsJetsAngle);
     output.Branch("ZJetsAngle",         &O_ZJetsAngle);
@@ -500,6 +527,71 @@ void Cate(TChain &chainname, TString outputname)
     O_pairMB1                = *pairMB1;
     O_pairMB2                = *pairMB2;
 
+    for (auto i=0; i< 4; ++i){
+        O_jetPx[i]     = -1; 
+        O_jetPy[i]     = -1; 
+        O_jetPz[i]     = -1; 
+        O_jetEn[i]     = -1; 
+        O_noHQPDG[i]   = -1; 
+        O_HQPDG[i]     = -1; 
+        O_B1Quark[i]   = -1; 
+        O_B2Quark[i]   = -1; 
+        O_OriLepPDG[i] = -1; 
+    }
+
+    for (auto i=0; i< 2; ++i){
+        O_HbbL[i] = -1; 
+        O_HccL[i] = -1; 
+        O_HooL[i] = -1; 
+        O_ZbbL[i] = -1; 
+        O_ZccL[i] = -1; 
+        O_ZooL[i] = -1; 
+    }
+
+
+    for (auto i=0; i< jetPx.GetSize(); ++i){
+        O_jetPx[i] = jetPx[i];
+        O_jetPy[i] = jetPy[i];
+        O_jetPz[i] = jetPz[i];
+        O_jetEn[i] = jetEn[i];
+        O_noHQPDG[i] = noHQPDG[i];
+        O_HQPDG[i]   = HQPDG[i];
+        O_B1Quark[i] = B1Quark[i];
+        O_B2Quark[i] = B2Quark[i];
+        O_OriLepPDG[i] = OriLepPDG[i];
+    }
+
+    for (auto i=0; i< HbbL.GetSize(); ++i){
+        O_HbbL[i] = HbbL[i]; 
+        O_HccL[i] = HccL[i]; 
+        O_HooL[i] = HooL[i]; 
+        O_ZbbL[i] = ZbbL[i]; 
+        O_ZccL[i] = ZccL[i]; 
+        O_ZooL[i] = ZooL[i]; 
+    }
+
+    j1_px    =  O_jetPx[0];
+    j1_py    =  O_jetPy[0];
+    j1_pz    =  O_jetPz[0];
+    j1_En    =  O_jetEn[0];
+    j2_px    =  O_jetPx[1];
+    j2_py    =  O_jetPy[1];
+    j2_pz    =  O_jetPz[1];
+    j2_En    =  O_jetEn[1];
+
+    j1_HbbL  =  O_HbbL[0];
+    j1_HccL  =  O_HccL[0];
+    j1_HooL  =  O_HooL[0];
+    j1_ZbbL  =  O_ZbbL[0];
+    j1_ZccL  =  O_ZccL[0];
+    j1_ZooL  =  O_ZooL[0];
+    j2_HbbL  =  O_HbbL[1];
+    j2_HccL  =  O_HccL[1];
+    j2_HooL  =  O_HooL[1];
+    j2_ZbbL  =  O_ZbbL[1];
+    j2_ZccL  =  O_ZccL[1];
+    j2_ZooL  =  O_ZooL[1];
+    
     O_weight = *weight;
 
     pass_sigcut = false;
@@ -670,13 +762,13 @@ void MCCategory()
 {
     preparedata();
 
-   // Cate(vvH,    "vvH");
-    //Cate(ff,    "ff");
-    //Cate(SW,    "SW");
-   // Cate(SZ,    "SZ");
-   // Cate(WW,    "WW");
-   // Cate(ZZ,    "ZZ");
+   Cate(vvH,    "vvH");
+   Cate(ff,    "ff");
+   Cate(SW,    "SW");
+   Cate(SZ,    "SZ");
+   Cate(WW,    "WW");
+   Cate(ZZ,    "ZZ");
     Cate(ZH,    "ZH");
-   // Cate(Mix,    "Mix");
+    Cate(Mix,    "Mix");
     
 }  
